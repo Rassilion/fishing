@@ -5,13 +5,46 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Fishing
 {
     public partial class Form1 : Form
     {
+        // mouse_event import
+        [DllImport("user32.dll")]
+        static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData,
+          int dwExtraInfo);
+        [Flags]
+        public enum MouseEventFlags : uint
+        {
+            LEFTDOWN = 0x00000002,
+            LEFTUP = 0x00000004,
+            MIDDLEDOWN = 0x00000020,
+            MIDDLEUP = 0x00000040,
+            MOVE = 0x00000001,
+            ABSOLUTE = 0x00008000,
+            RIGHTDOWN = 0x00000008,
+            RIGHTUP = 0x00000010,
+            WHEEL = 0x00000800,
+            XDOWN = 0x00000080,
+            XUP = 0x00000100
+        }
+
+        //Use the values of this enum for the 'dwData' parameter
+        //to specify an X button when using MouseEventFlags.XDOWN or
+        //MouseEventFlags.XUP for the dwFlags parameter.
+        public enum MouseEventDataXButtons : uint
+        {
+            XBUTTON1 = 0x00000001,
+            XBUTTON2 = 0x00000002
+        }
+
+
+
+
         //center coordinates of fishRing
         //initialized with (0,0)
         public Point center_fishRing=new Point(0, 0);
@@ -267,7 +300,8 @@ namespace Fishing
         /// <param name="Coordinate">Coordinate to be go</param>
         private void mouseMove(Point Coordinate)
         {
-
+            //basic
+            Cursor.Position = Coordinate;
         }
 
         /// <summary>
@@ -275,7 +309,8 @@ namespace Fishing
         /// </summary>
         private void clickDown()
         {
-
+            mouse_event((uint)MouseEventFlags.LEFTDOWN, 0, 0, 0, 0);
+            
         }
 
 
@@ -284,7 +319,7 @@ namespace Fishing
         /// </summary>
         private void clickUp()
         {
- 
+            mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0); 
         }
 
 
@@ -295,7 +330,7 @@ namespace Fishing
         /// <param name="b">Right boundary in ms</param>
         private void delay(int a, int b)
         {
-
+            Thread.Sleep((new Random()).Next(a, b));
         }
 
         /// <summary>
@@ -305,7 +340,9 @@ namespace Fishing
         /// </summary>
         private void mouseClick()
         {
-
+            mouse_event((uint)MouseEventFlags.LEFTDOWN, 0, 0, 0, 0);
+            delay(500, 1000);
+            mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0);
         }
 
 
@@ -319,7 +356,8 @@ namespace Fishing
         /// <returns></returns>
         private Point coordinateRandomizer(Point coordinate, int limit)
         {
-            return new Point(0, 0);
+            coordinate = coordinate + new Size(new Random().Next(-limit, limit), new Random().Next(-limit, limit));
+            return coordinate;
         }
 
 
