@@ -105,6 +105,15 @@ namespace Fishing
         }
 
 
+        /// <summary>
+        /// assign 0 to global variable start
+        /// </summary>
+        private void stopFishing()
+        {
+
+        }
+
+
 
         /// <summary>
         /// Creates a new Bitmap bmpScreenShot
@@ -116,7 +125,6 @@ namespace Fishing
         /// <returns>Bitmap bmpScreenShot</returns>
         private Bitmap screenShot(Point upper_left, Point lower_right)
         {
-            adana
             return ;
         }
 
