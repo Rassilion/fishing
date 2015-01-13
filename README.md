@@ -1,0 +1,2 @@
+# fishing
+aura kingdom fishingbot
