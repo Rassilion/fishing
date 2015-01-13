@@ -93,17 +93,17 @@ namespace Fishing
 
 
         /// <summary>
-        /// Takes screenshot of the Full Screen
-        /// Finds center of Fish ring 
-        /// Assigns that value to global variable center_fishRing
-        /// Moves mouse to center_fishRing
-        /// Clicks
-        /// Wait until Fish appears
-        /// Click
-        /// Find Left Bar and Right Bar
-        /// Calculate Right Bar's Lower-Right end point
-        /// Assign Left and Right Bars to global variable bar
-        /// calibrated=1
+        /// Takes screenshot of the Full Screen<para />
+        /// Finds center of Fish ring <para />
+        /// Assigns that value to global variable center_fishRing<para />
+        /// Moves mouse to center_fishRing<para />
+        /// Clicks<para />
+        /// Wait until Fish appears<para />
+        /// Click<para />
+        /// Find Left Bar and Right Bar<para />
+        /// Calculate Right Bar's Lower-Right end point<para />
+        /// Assign Left and Right Bars to global variable bar<para />
+        /// calibrated=1<para />
         /// MassageBox("Calibration Completed");
         /// </summary>
         private void calibrator()
@@ -304,7 +304,6 @@ namespace Fishing
 
         /// <summary>
         /// Searches The Cool Fisherman
-        /// If found assign that point to location
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
