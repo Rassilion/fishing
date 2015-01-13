@@ -132,7 +132,7 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchBitmap(Bitmap bmpNeedle, Bitmap bmpHaystack, out Point location)
         {
-            return true;
+            return false;
         }
 
 
