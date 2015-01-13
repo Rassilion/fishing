@@ -32,8 +32,8 @@ Aura kingdom fishingbot project
  [ ]susleme  
  [X]calibrator  
  [X]fishing  
- [ ]startFishing  
- [ ]stopFishing  
+ [X]startFishing  
+ [X]stopFishing  
 
 ### Artun
  [ ]screenShot  

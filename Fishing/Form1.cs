@@ -200,7 +200,20 @@ namespace Fishing
         /// </summary>
         private void startFishing()
         {
-
+            if(calibrated==0)
+            {
+                MessageBox.Show("Please run calibrator");
+            }
+            start = 1;
+            while(start==1)
+            {
+                fishing();
+                while(!searchCoolFisherman())
+                {
+                    delay(50, 60);
+                }
+            }
+            MessageBox.Show("fishing stopped");
         }
 
 
@@ -209,7 +222,7 @@ namespace Fishing
         /// </summary>
         private void stopFishing()
         {
-
+            start = 0;
         }
 
 
