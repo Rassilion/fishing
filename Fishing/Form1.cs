@@ -115,6 +115,7 @@ namespace Fishing
             if(isFoundCoolFisherman== false)
             {
                 MessageBox.Show("cool fisherman yok");
+                return;
             }
             mouseMove(center_fishRing);
             mouseClick();
@@ -128,16 +129,26 @@ namespace Fishing
                     break;
                 }
             }
+
+            if(i==1000)
+            {
+                MessageBox.Show("bmpFish could not found!");
+                return;
+            }
+
             mouseClick();
-            
+
+            delay(1000, 2000);
             if (searchLeftBar(out bar[0]) == false)
             {
                 MessageBox.Show("left bar yok");
+                return;
             }
             
             if (searchRightBar(out bar[1]) == false)
             {
                 MessageBox.Show("right bar yok");
+                return;
             }
             //calculate upper right
             bar[1] = bar[1] + new Size(0, 7);
@@ -172,15 +183,24 @@ namespace Fishing
                     break;
                 }
             }
+
+            if(i==1000)
+            {
+                MessageBox.Show("bmpFish could not found!");
+                return;
+            }
+
             mouseClick();
             Point[] boundary= new Point[2];
             if (searchLeftBoundary(out boundary[0])==false)
             {
                 MessageBox.Show("left boundary yok");
+                return;
             }
             if (searchRightBoundary(out boundary[1]) == false)
             {
                 MessageBox.Show("right boundary yok");
+                return;
             }
             Point stick_location= new Point(0,0);
             while (findFishStick(out stick_location))
@@ -215,6 +235,7 @@ namespace Fishing
             if(calibrated==0)
             {
                 MessageBox.Show("Please run calibrator");
+                return;
             }
             start = 1;
             while(start==1)
@@ -276,8 +297,8 @@ namespace Fishing
                     {
                         for(int innerY=0;innerY<bmpNeedle.Height;innerY++)
                         {
-                            Color cNeedle = bmpNeedle.GetPixel(outerX + innerX, outerY + innerY);
-                            Color cHaystack = bmpHaystack.GetPixel(innerX, innerY);
+                            Color cHaystack = bmpHaystack.GetPixel(outerX + innerX, outerY + innerY);
+                            Color cNeedle = bmpNeedle.GetPixel(innerX, innerY);
                             if(cNeedle.R!=cHaystack.R || cNeedle.G!=cHaystack.G || cNeedle.B!=cHaystack.B)
                             {
                                 goto notFound;
@@ -331,7 +352,18 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchLeftBoundary(out Point location)
         {
-            return true;
+            Bitmap bmpScreenShot = screenShot(bar[0]+new Size(5, 3), bar[1]+new Size(0, -3));
+            for(int i=0; i<bmpScreenShot.Width;i++)
+            {
+                Color cPixel = bmpScreenShot.GetPixel(i, 0);
+                if(cPixel.R<180)
+                {
+                    location = bar[0] + new Size(5 + i, 3);
+                    return true;
+                }
+            }
+            location = Point.Empty;
+            return false;
         }
 
 
@@ -344,6 +376,18 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchRightBoundary(out Point location)
         {
+            Bitmap bmpScreenShot = screenShot(bar[0] + new Size(0, 3), bar[1] + new Size(-5, -3));
+            for(int i=bmpScreenShot.Width-1; i>=0; i--)
+            {
+                Color cPixel = bmpScreenShot.GetPixel(i, 0);
+                if (cPixel.R < 160)
+                {
+                    location = bar[1] + new Size(i-bmpScreenShot.Width-1, -3);
+                    return true;
+                }
+
+            }
+            location = Point.Empty;
             return false;
         }
 
@@ -377,8 +421,8 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchLeftBar(out Point location)
         {
-            Bitmap bmpScreenShot = screenShot(new Point(center_fishRing.X - radius_fishRing, center_fishRing.Y - radius_fishRing),
-                new Point(resX, center_fishRing.Y + radius_fishRing));
+            Bitmap bmpScreenShot = screenShot(new Point(center_fishRing.X, center_fishRing.Y),
+                new Point(resX, center_fishRing.Y + 500));
             if (searchBitmap(Properties.Resources.bmpLeftBar, bmpScreenShot, out location))
             {
                 return true;
@@ -397,7 +441,7 @@ namespace Fishing
         private bool searchRightBar(out Point location)
         {
             Bitmap bmpScreenShot = screenShot(new Point(center_fishRing.X - radius_fishRing, center_fishRing.Y - radius_fishRing),
-                new Point(resX, center_fishRing.Y + radius_fishRing));
+                new Point(resX, center_fishRing.Y + 500));
             if (searchBitmap(Properties.Resources.bmpRightBar, bmpScreenShot, out location))
             {
                 return true;
@@ -476,7 +520,7 @@ namespace Fishing
         private void mouseClick()
         {
             mouse_event((uint)MouseEventFlags.LEFTDOWN, 0, 0, 0, 0);
-            delay(500, 1000);
+            delay(50, 200);
             mouse_event((uint)MouseEventFlags.LEFTUP, 0, 0, 0, 0);
         }
 
@@ -493,6 +537,16 @@ namespace Fishing
         {
             coordinate = coordinate + new Size(new Random().Next(-limit, limit), new Random().Next(-limit, limit));
             return coordinate;
+        }
+
+        private void b_Calibrator_Click(object sender, EventArgs e)
+        {
+            calibrator();
+        }
+
+        private void b_Start_Click(object sender, EventArgs e)
+        {
+            startFishing();
         }
 
 
