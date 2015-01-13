@@ -69,6 +69,14 @@ namespace Fishing
         //initialized with 0
         public int start=0;
 
+        //resolution X
+        //initialized with 1280
+        public int resX = 1280;
+
+
+        //resolution Y
+        //initialized with 720
+        public int resY = 720;
 
 
 
@@ -297,9 +305,17 @@ namespace Fishing
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
-        private bool searchCoolFisherman(out Point location)
+        private bool searchCoolFisherman()
         {
-            return true;
+            Bitmap bmpScreenShot = screenShot(new Point(center_fishRing.X - radius_fishRing, center_fishRing.Y - radius_fishRing), 
+                new Point(center_fishRing.X + radius_fishRing, center_fishRing.Y + radius_fishRing));
+            Point temp;
+            if (searchBitmap(Properties.Resources.bmpCoolFisherman1, bmpScreenShot, out temp) || 
+                searchBitmap(Properties.Resources.bmpCoolFisherman2, bmpScreenShot, out temp))
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -338,6 +354,16 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchFish()
         {
+            Bitmap bmpScreenShot = screenShot(new Point(center_fishRing.X - radius_fishRing, center_fishRing.Y - radius_fishRing),
+                new Point(center_fishRing.X + radius_fishRing, center_fishRing.Y + radius_fishRing));
+            Point temp;
+            if (searchBitmap(Properties.Resources.bmpFish1, bmpScreenShot, out temp) ||
+                searchBitmap(Properties.Resources.bmpFish2, bmpScreenShot, out temp) ||
+                searchBitmap(Properties.Resources.bmpFish3, bmpScreenShot, out temp) ||
+                searchBitmap(Properties.Resources.bmpFish4, bmpScreenShot, out temp))
+            {
+                return true;
+            }
             return false;
         }
 
@@ -349,7 +375,13 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchLeftBar(out Point location)
         {
-            return true;
+            Bitmap bmpScreenShot = screenShot(new Point(center_fishRing.X - radius_fishRing, center_fishRing.Y - radius_fishRing),
+                new Point(resX, center_fishRing.Y + radius_fishRing));
+            if (searchBitmap(Properties.Resources.bmpLeftBar, bmpScreenShot, out location))
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -362,7 +394,13 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchRightBar(out Point location)
         {
-            return true;
+            Bitmap bmpScreenShot = screenShot(new Point(center_fishRing.X - radius_fishRing, center_fishRing.Y - radius_fishRing),
+                new Point(resX, center_fishRing.Y + radius_fishRing));
+            if (searchBitmap(Properties.Resources.bmpRightBar, bmpScreenShot, out location))
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -374,6 +412,12 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool findFishStick(out Point location)
         {
+            Bitmap bmpScreenShot = screenShot(bar[0], bar[1]);
+            Point temp;
+            if (searchBitmap(Properties.Resources.bmpFishStick, bmpScreenShot, out location))
+            {
+                return true;
+            }
             return false;
         }
 
