@@ -125,7 +125,12 @@ namespace Fishing
         /// <returns>Bitmap bmpScreenShot</returns>
         private Bitmap screenShot(Point upper_left, Point lower_right)
         {
-            return ;
+            Bitmap bmpScreenShot = new Bitmap(lower_right.X - upper_left.X, lower_right.Y - upper_left.Y);
+            Graphics g = Graphics.FromImage(bmpScreenShot);
+            Size size_of_screen = new Size(lower_right.X - upper_left.X, lower_right.Y - upper_left.Y);
+            g.CopyFromScreen(upper_left.X, upper_left.Y, 0, 0, size_of_screen);
+            //delete size_of_screen;
+            return bmpScreenShot;
         }
 
 
@@ -140,6 +145,29 @@ namespace Fishing
         /// <returns>found?true:false</returns>
         private bool searchBitmap(Bitmap bmpNeedle, Bitmap bmpHaystack, out Point location)
         {
+            for (int outerX = 0; outerX < bmpHaystack.Width - bmpNeedle.Width; outerX++)
+            {
+                for(int outerY=0; outerY<bmpHaystack.Height-bmpNeedle.Height;outerY++)
+                {
+                    for(int innerX=0; innerX<bmpNeedle.Width;innerX++)
+                    {
+                        for(int innerY=0;innerY<bmpNeedle.Height;innerY++)
+                        {
+                            Color cNeedle = bmpNeedle.GetPixel(outerX + innerX, outerY + innerY);
+                            Color cHaystack = bmpHaystack.GetPixel(innerX, innerY);
+                            if(cNeedle.R!=cHaystack.R || cNeedle.G!=cHaystack.G || cNeedle.B!=cHaystack.B)
+                            {
+                                goto notFound;
+                            }
+                        }
+                    }
+                    location = new Point(outerX, outerY);
+                    return true;
+                notFound:
+                    continue;
+                }
+            }
+            location = Point.Empty;
             return false;
         }
 
