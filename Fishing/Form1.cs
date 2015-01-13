@@ -417,7 +417,6 @@ namespace Fishing
         private bool findFishStick(out Point location)
         {
             Bitmap bmpScreenShot = screenShot(bar[0], bar[1]);
-            Point temp;
             if (searchBitmap(Properties.Resources.bmpFishStick, bmpScreenShot, out location))
             {
                 return true;
