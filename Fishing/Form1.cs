@@ -100,6 +100,37 @@ namespace Fishing
         /// </summary>
         private void calibrator()
         {
+            if(searchCoolFisherman(out center_fishRing)== false)
+            {
+                MessageBox.Show("cool fisherman yok");
+            }
+            mouseMove(center_fishRing);
+            mouseClick();
+            int i=0;
+            while(i<1000)
+            {
+                i++;
+                Thread.Sleep(10);
+                if(searchFish()==true)
+                {
+                    break;
+                }
+            }
+            mouseClick();
+            
+            if (searchLeftBar(out bar[0]) == false)
+            {
+                MessageBox.Show("left bar yok");
+            }
+            
+            if (searchRightBar(out bar[1]) == false)
+            {
+                MessageBox.Show("right bar yok");
+            }
+            //calculate upper right
+            bar[1] = bar[1] + new Size(0, 0);
+            calibrated = 1;
+            MessageBox.Show("calibrated");
 
         }
 
@@ -117,7 +148,42 @@ namespace Fishing
         /// </summary>
         private void fishing()
         {
-            return;
+            mouseMove(center_fishRing);
+            mouseClick();
+            int i = 0;
+            while (i < 1000)
+            {
+                i++;
+                Thread.Sleep(10);
+                if (searchFish() == true)
+                {
+                    break;
+                }
+            }
+            mouseClick();
+            Point[] boundary= new Point[2];
+            if (searchLeftBoundary(out boundary[0])==false)
+            {
+                MessageBox.Show("left boundary yok");
+            }
+            if (searchRightBoundary(out boundary[1]) == false)
+            {
+                MessageBox.Show("right boundary yok");
+            }
+            Point stick_location= new Point(0,0);
+            while (findFishStick(out stick_location))
+            {
+               if(stick_location.X<boundary[1].X)
+               {
+                   clickDown();
+               }
+               if(stick_location.X<boundary[0].X+3)
+               {
+                   clickUp();
+               }
+
+            }
+            clickUp();
         }
 
         /// <summary>
@@ -281,7 +347,7 @@ namespace Fishing
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
-        private bool searhRightBar(out Point location)
+        private bool searchRightBar(out Point location)
         {
             return true;
         }

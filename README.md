@@ -23,15 +23,15 @@ Aura kingdom fishingbot project
  [ ]susleme  
 
 ### Deniz
- [ ]mouseMove  
- [ ]clickDown  
- [ ]clickUp  
- [ ]delay  
- [ ]mouseClick  
- [ ]coordinateRandomizer  
+ [X]mouseMove  
+ [X]clickDown  
+ [X]clickUp  
+ [X]delay  
+ [X]mouseClick  
+ [X]coordinateRandomizer  
  [ ]susleme  
- [ ]calibrator  
- [ ]fishing  
+ [X]calibrator  
+ [X]fishing  
  [ ]startFishing  
  [ ]stopFishing  
 
