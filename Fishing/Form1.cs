@@ -108,7 +108,11 @@ namespace Fishing
         /// </summary>
         private void calibrator()
         {
-            if(searchCoolFisherman(out center_fishRing)== false)
+            Bitmap bmpScreenShot = screenShot(new Point(0, 0), new Point(resX, resY));
+            bool isFoundCoolFisherman = searchBitmap(Properties.Resources.bmpCoolFisherman1, bmpScreenShot, out center_fishRing)
+                || searchBitmap(Properties.Resources.bmpCoolFisherman2, bmpScreenShot, out center_fishRing); 
+
+            if(isFoundCoolFisherman== false)
             {
                 MessageBox.Show("cool fisherman yok");
             }
@@ -136,7 +140,7 @@ namespace Fishing
                 MessageBox.Show("right bar yok");
             }
             //calculate upper right
-            bar[1] = bar[1] + new Size(0, 0);
+            bar[1] = bar[1] + new Size(0, 7);
             calibrated = 1;
             MessageBox.Show("calibrated");
 
