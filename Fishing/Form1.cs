@@ -116,7 +116,8 @@ namespace Fishing
         /// <returns>Bitmap bmpScreenShot</returns>
         private Bitmap screenShot(Point upper_left, Point lower_right)
         {
-            return;
+            adana
+            return ;
         }
 
 
