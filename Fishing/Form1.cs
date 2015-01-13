@@ -147,17 +147,17 @@ namespace Fishing
         }
 
 
-        /// <summary>
-        /// Moves mouse to center_fishRing
-        /// mouseClick
-        /// while(!searchFish)
-        ///     delay
-        /// Search for Left and Right boundaries
-        /// while(searchFishStick(out loc))
-        ///     check whether stick is in the boundaries
-        ///     do what must be done
-        /// release mouse
-        /// </summary>
+        /// <summary> 
+        /// Moves mouse to center_fishRing<para />
+        /// mouseClick<para /> 
+        /// while(!searchFish)<para /> 
+        ///     delay<para />
+        /// Search for Left and Right boundaries<para /> 
+        /// while(searchFishStick(out loc))<para />
+        ///     check whether stick is in the boundaries <para /> 
+        ///     do what must be done <para />> 
+        /// release mouse 
+        /// </summary> 
         private void fishing()
         {
             mouseMove(center_fishRing);
@@ -199,16 +199,16 @@ namespace Fishing
         }
 
         /// <summary>
-        /// checks whether calibrated
-        /// assign 1 to global variable start
-        /// while(start==1)
-        /// {
-        ///     fishing();
-        ///     while(!searchCoolFisherman())
-        ///     {
-        ///         delay;
-        ///     }
-        /// }
+        /// checks whether calibrated<para />
+        /// assign 1 to global variable start<para />
+        /// while(start==1)<para />
+        /// {<para />
+        ///     fishing();<para />
+        ///     while(!searchCoolFisherman())<para />
+        ///     {<para />
+        ///         delay;<para />
+        ///     }<para />
+        /// }<para />
         /// </summary>
         private void startFishing()
         {
@@ -228,7 +228,6 @@ namespace Fishing
             MessageBox.Show("fishing stopped");
         }
 
-
         /// <summary>
         /// assign 0 to global variable start
         /// </summary>
@@ -240,9 +239,9 @@ namespace Fishing
 
 
         /// <summary>
-        /// Creates a new Bitmap bmpScreenShot
-        /// Creates a Graphic object g constructed with bmpScreenShot
-        /// Takes a screenshot
+        /// Creates a new Bitmap bmpScreenShot<para />
+        /// Creates a Graphic object g constructed with bmpScreenShot<para />
+        /// Takes a screenshot<para />
         /// </summary>
         /// <param name="upper_left">Upper Left Coordinates of SS</param>
         /// <param name="lower_right">Lower Right Coordinates of SS</param>
@@ -259,9 +258,9 @@ namespace Fishing
 
 
         /// <summary>
-        /// Search bmpNeedle in bmpHaystack
-        /// If found, found coordinates are assigned to (out)location
-        /// else (0, 0) is assigned to location
+        /// Search bmpNeedle in bmpHaystack<para />
+        /// If found, found coordinates are assigned to (out)location<para />
+        /// else (0, 0) is assigned to location<para />
         /// </summary>
         /// <param name="bmpNeedle">Bitmap to be found</param>
         /// <param name="bmpHaystack">Bitmap to be found in</param>
@@ -326,8 +325,8 @@ namespace Fishing
 
 
         /// <summary>
-        /// Search from left for the desired colour change
-        /// If found assign that point to location
+        /// Search from left for the desired colour change<para />
+        /// If found assign that point to location<para />
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
@@ -339,8 +338,8 @@ namespace Fishing
 
 
         /// <summary>
-        /// Search from right for the desired colour change
-        /// If found assign that point to location
+        /// Search from right for the desired colour change<para />
+        /// If found assign that point to location<para />
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
@@ -352,8 +351,8 @@ namespace Fishing
 
 
         /// <summary>
-        /// Takes a screenShot of FishRing area
-        /// Searchs for Fish image(s) in fishRing
+        /// Takes a screenShot of FishRing area<para />
+        /// Searchs for Fish image(s) in fishRing<para />
         /// </summary>
         /// <returns>found?true:false</returns>
         private bool searchFish()
@@ -372,8 +371,8 @@ namespace Fishing
         }
 
         /// <summary>
-        /// Searches Left Bar
-        /// If found assign that point to location
+        /// Searches Left Bar<para />
+        /// If found assign that point to location<para />
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
@@ -391,8 +390,8 @@ namespace Fishing
 
 
         /// <summary>
-        /// Searches Right Bar
-        /// If found assign that point to location
+        /// Searches Right Bar<para />
+        /// If found assign that point to location<para />
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
@@ -409,8 +408,8 @@ namespace Fishing
 
 
         /// <summary>
-        /// Search fishStick
-        /// If found assign that point to location
+        /// Search fishStick<para />
+        /// If found assign that point to location<para />
         /// </summary>
         /// <param name="location"></param>
         /// <returns>found?true:false</returns>
@@ -486,7 +485,7 @@ namespace Fishing
 
 
         /// <summary>
-        /// Randomizes a coordinate in given limits
+        /// Randomizes a coordinate in given limits<para />
         /// </summary>
         /// <param name="coordinate">Initial coordinates</param>
         /// <param name="limit">Randomizing limiter</param>
