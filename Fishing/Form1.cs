@@ -212,6 +212,17 @@ namespace Fishing
      */
 
 
+        /// <summary>
+        /// Searches The Cool Fisherman
+        /// If found assign that point to location
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns>found?true:false</returns>
+        private bool searchCoolFisherman(out Point location)
+        {
+            return true;
+        }
+
 
 
 
